@@ -2,10 +2,29 @@
   "name": "omni-kit",
   "module": "index.ts",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev:lib": "bun --filter './packages/**' --parallel dev",
+    "build:lib": "bun --filter './packages/**' --parallel build",
+    "prepare": "bun build:lib",
+    "clear-all": "bun x rimraf@5 -g **/node_modules"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "catalog:"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "catalog": {
+      "typescript": "^5",
+      "unbuild": "^3.5.0",
+      "vitest": "^3.2.4"
+    },
+    "catalogs": {}
   }
 }
